@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+
+
+     <div class="container my-3">
+       <h1>Add Your TODOs here</h1>
+
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title"  aria-describedby="emailHelp" required>
+              
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="description" value=" " name="description" required>
+            </div>
+            
+            <button type="submit" class="btn btn-success" onclick=searching()>Add Todo</button>
+          </form>
+     </div>
+
+
+     <div class="container my-3">
+       <h1>Your TODOs here</h1>
+       {% if todos.count()==0 %}
+       <script>
+         alert("You have no record in your todo list")
+       
+       
+       
+    </script>
+    <div class="container">
+      <h3><i>No Records found</i></h3>
+    </div>
+       {% else %}
+     <table class="table">
+         
+       
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Author</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+               
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{todo.todotitle}}</td>
+            <td>{{todo.tododesc}}</td>
+            <td>{{todo.date}}</td>
+            <td>{{todo.author}}</td>
+            <td><a href="/delete/{{todo.sno}}"><button type="submit" class="btn btn-danger" >Delete</button></a>
+            <a href="/update/{{todo.sno}}"><button type="submit" class="btn btn-info mx-1">Update</button></a></td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+
+     {% endblock %} 
