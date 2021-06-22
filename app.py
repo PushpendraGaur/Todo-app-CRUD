@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request
 from werkzeug.utils import redirect
 from pymongo import MongoClient
-from datetime import date, datetime
+from datetime import datetime
 
 app = Flask(__name__)
 
